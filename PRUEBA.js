@@ -26,13 +26,70 @@ function filtrar (nombre)
     }
 }
 
-let opcion = prompt("Selecciona un pais");
 
+document.getElementById("CALCULAR").onclick = function(){
+
+let PAIS = document.getElementById("PAIS").value;
+let PRECIO = parseFloat(document.getElementById("PRECIO").value);
+
+
+document.getElementById("ELECCIONPAIS").textContent = "País seleccionado: " + PAIS;
+
+let IVA = filtrar(PAIS);
+
+document.getElementById("IVA").textContent = "IVA: " + IVA;
+
+let FINAL = PRECIO + (PRECIO * filtrar(PAIS));
+
+document.getElementById("PRECIOFINAL").textContent = "Precio final: " + FINAL;
+
+localStorage.setItem("PAIS", PAIS);
+localStorage.setItem("IVA", IVA);
+localStorage.setItem("PRECIO", PRECIO);
+localStorage.setItem("FINAL", FINAL);
+
+
+document.getElementById("MOSTRAR").textContent = "MOSTRAR";
+document.getElementById("MOSTRAR").style.cssText = "width: 100px; height: 50px; margin: 2px; border: solid; padding: 0; text-align: center; line-height: 50px;";
+
+
+};
+
+document.getElementById("MOSTRAR").onclick = function() {
+    let PAIS = localStorage.getItem("PAIS");
+    let IVA = localStorage.getItem("IVA");
+    let PRECIO = localStorage.getItem("PRECIO");
+    let FINAL = localStorage.getItem("FINAL");
+
+    if (document.getElementById("PRECIOFINAL").textContent != null) {
+        alert("Pais elegido: " + PAIS + "\nIVA: " + IVA + "\nPRECIO: " + PRECIO + "\nFINAL: " + FINAL);
+    } else {
+        alert("Debe ingresar un precio!");
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//let opcion = prompt("Selecciona un pais");
+/*
 while (opcion != "argentina" && opcion != "mexico" && opcion != "españa" && opcion != "estados unidos" && opcion != "brasil") 
 {
     alert ("INCORRECTO");
     opcion = prompt("Selecciona una opción: Argentina, Mexico , Brasil, españa o estados unidos").toLowerCase();
-}
+
 
 alert("Has seleccionado el pais: " + opcion);
 
@@ -46,4 +103,4 @@ let  iva = precio * filtrar(opcion);
 
 console.log ("IVA: " + iva);
 
-console.log ("El precio final es:" + (precio + iva));
+console.log ("El precio final es:" + (precio + iva));}*/
